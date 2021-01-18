@@ -5,8 +5,8 @@ languages:
 products:
 - azure
 extensions:
-- services: Cosmos-DB
-- platforms: dotnet
+  services: Cosmos-DB
+  platforms: dotnet
 ---
 
 # Create a CosmosDB, configure it for high availability and create a firewall by limiting access to CosmosDB from an approved set of IP addresses using C# #
