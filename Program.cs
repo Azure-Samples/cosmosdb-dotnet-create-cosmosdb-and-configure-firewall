@@ -63,10 +63,8 @@ namespace CosmosDBWithIPRange
                     },
                     IPRules =
                     {
-                        new CosmosDBIPAddressOrRange()
-                        {
-                            IPAddressOrRange = Environment.GetEnvironmentVariable("Current_Machine_PublicIP")
-                        }
+                        new CosmosDBIPAddressOrRange(){ IPAddressOrRange = "13.91.6.132" },
+                        new CosmosDBIPAddressOrRange(){ IPAddressOrRange = "13.91.6.1/24" },
                     },
                     IsVirtualNetworkFilterEnabled = true,
                     EnableAutomaticFailover = false,
@@ -82,22 +80,6 @@ namespace CosmosDBWithIPRange
                 CosmosDBAccountResource dbAccount = accountLro.Value;
                 Utilities.Log($"Created CosmosDB {dbAccount.Id.Name}");
 
-
-
-
-
-                //Console.WriteLine("Creating a CosmosDB...");
-                //ICosmosDBAccount cosmosDBAccount = azure.CosmosDBAccounts.Define(cosmosDBName)
-                //        .WithRegion(Region.USWest)
-                //        .WithNewResourceGroup(rgName)
-                //        .WithKind(DatabaseAccountKind.GlobalDocumentDB)
-                //        .WithSessionConsistency()
-                //        .WithWriteReplication(Region.USEast)
-                //        .WithReadReplication(Region.USCentral)
-                //        .WithIpRangeFilter("13.91.6.132,13.91.6.1/24")
-                //        .Create();
-
-
                 //============================================================
                 // Delete CosmosDB
                 Utilities.Log("Deleting the CosmosDB");
@@ -110,6 +92,10 @@ namespace CosmosDBWithIPRange
                     Utilities.Log(ex.ToString());
                 }
                 Utilities.Log("Deleted the CosmosDB");
+            }
+            catch   (Exception ex)
+            {
+                Utilities.Log(ex);
             }
             finally
             {
